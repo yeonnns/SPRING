@@ -56,7 +56,7 @@ $(document).ready(function(){
 		$(location).attr('href', '/www/fileBoard/fileBoardList.blp');
 	});
 	*/
-	
+	/* 설문조사 클릭이벤트 */
 	$('#sbtn').click(function(){
 		$('#frm').attr('action', '/www/survey/surveyInfo.blp');
 		$('#frm').submit();
