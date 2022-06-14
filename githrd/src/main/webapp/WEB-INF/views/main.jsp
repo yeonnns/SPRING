@@ -38,7 +38,7 @@
 </script>
 </head>
 <body>
-	<form method="POST" action="" id="frm" name="frm">
+	<form method="POST" action="#" id="frm" name="frm">
 		<input type="hidden" id="id" name="id" value="${SID}">
 	</form>
 	
