@@ -1,6 +1,6 @@
 ### GITHRD Project 요청 설계 ###
 
-
+ 
 # main 페이지 보기 요청
 요청내용	:	/www/ , /www/main.blp
 파라미터	:	무
