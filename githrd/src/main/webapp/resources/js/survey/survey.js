@@ -13,10 +13,31 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
+	$('.done').click(function(){
+	// 넘겨줄 데이터 읽어오기
+	var sno = $(this).attr('id');
+	var txt = $(this).text();
+	txt = txt.substring(txt.indexOf('.') + 2);
+	
+	// 입력태그에 데이터 채우고(val)
+	$('#title').val(txt);
+	$('#sino').val(sno);
+	
+	
+	$('#frm').attr('action', '/www/survey/surveyResult.blp')
+	$('#frm').submit();
+	});
+	
 	$('#lbtn').click(function(){
 		$('#frm').attr('action', '/www/survey/surveyInfo.blp');
 		$('#frm').submit();
 	});
+	
+	$('#hbtn').click(function(){
+		$(location).attr('href','/www/');
+		
+	});
+	
 	
 	$('#rbtn').click(function(){
 		document.frm1.reset();
