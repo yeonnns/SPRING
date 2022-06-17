@@ -43,8 +43,8 @@ public class Survey {
 	@RequestMapping("/survey.blp")
 	public ModelAndView survey(ModelAndView mv, SurveyVO sVO) {
 		
-//		sSrvc.setBogi(sVO);
-		sSrvc.settingList(sVO);
+		sSrvc.setBogi(sVO);
+//		sSrvc.settingList(sVO);
 		
 		// 데이터 심고
 		mv.addObject("DATA", sVO);

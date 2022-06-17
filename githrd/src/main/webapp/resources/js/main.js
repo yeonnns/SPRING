@@ -51,11 +51,10 @@ $(document).ready(function(){
 	});
 	
 	/* 파일게시판 클릭이벤트 */
-	/*
 	$('#fbtn').click(function(){
-		$(location).attr('href', '/www/fileBoard/fileBoardList.blp');
+		$(location).attr('href', '/www/board/boardList.blp');
 	});
-	*/
+
 	/* 설문조사 클릭이벤트 */
 	$('#sbtn').click(function(){
 		$('#frm').attr('action', '/www/survey/surveyInfo.blp');
