@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BlackPink 게시판 리스트</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/www/img/favicon/favicon-32x32.png">
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
@@ -33,7 +34,7 @@
 <body class="w3-light-grey">
 	<form method="POST" action="/www/board/boardDetail.blp" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
-		<input type="hidden" name="bno">
+		<input type="hidden" name="bno" id="bno">
 	</form>
 	
 	<div class="w3-content mxw700">
@@ -68,7 +69,7 @@
 			<div class="w3-col w3-white w3-hover-blue w3-center w3-border-bottom w3-border-left w3-border-right brdList" id="${data.bno}">
 				<div class="w3-col m3">
 					<div class="w3-col m5 w3-border-right">${data.bno}</div>
-					<div class="w3-col m7 w3-border-right">${data.id }</div>
+					<div class="w3-col m7 w3-border-right">${data.id}</div>
 				</div>
 				<div class="w3-col m4 w3-border-right">${data.title}</div>
 				<div class="w3-col m3 w3-border-right">${data.sdate}</div>

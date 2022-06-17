@@ -11,6 +11,12 @@ public class BoardVO {
 	private Date wdate;
 	private List<FileVO> list;
 	
+	public List<FileVO> getList() {
+		return list;
+	}
+	public void setList(List<FileVO> list) {
+		this.list = list;
+	}
 	public int getMno() {
 		return mno;
 	}
@@ -99,13 +105,6 @@ public class BoardVO {
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 		setSdate();
-	}
-	
-	public List<FileVO> getList() {
-		return list;
-	}
-	public void setList(List<FileVO> list) {
-		this.list = list;
 	}
 	@Override
 	public String toString() {

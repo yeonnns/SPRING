@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>BlackPink 게시판 상세보기</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/www/img/favicon/favicon-32x32.png">
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/www/js/whistle/board.js"></script>
+<script type="text/javascript" src="/www/js/board/board.js"></script>
 <style type="text/css">
 	label {
 		font-size: 14pt;
@@ -20,6 +21,9 @@
 	input[type="file"].w3-margin-bottom {
 		margin-bottom: 5px!important;
 	}
+	.mgv0 {
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -28,23 +32,23 @@
 		<div class="w3-col w3-card-4 frmpadding">
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<label class="w3-col s2">글번호</label>
-				<h4 id="bno" class="w3-col m10">${DATA.bno}</h4>
+				<h4 id="bno" class="w3-col m10 mgv0">${DATA.bno}</h4>
 			</div>
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<label class="w3-col s2">Writer</label>
-				<h4 id="writer" class="w3-col m10">${DATA.id}</h4>
+				<h4 id="writer" class="w3-col m10 mgv0">${DATA.id}</h4>
 			</div>
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<label class="w3-col s2">Title</label>
-				<h4 id="title" class="w3-col m10">${DATA.title}</h4>
+				<h4 id="title" class="w3-col m10 mgv0">${DATA.title}</h4>
 			</div>
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<label class="w3-col s2">Content</label>
-				<h4 id="body" class="w3-col m10">${DATA.body}</h4>
+				<h4 id="body" class="w3-col m10 mgv0">${DATA.body}</h4>
 			</div>
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<label class="w3-col s2">작성일</label>
-				<h4 id="wdate" class="w3-col m10">${DATA.sdate}</h4>
+				<h4 id="wdate" class="w3-col m10 mgv0">${DATA.sdate}</h4>
 			</div>
 			
 <c:if test="${not empty LIST}">			
@@ -70,7 +74,7 @@
 		</div>
 	</div>
 	
-	<form method="POST" action="/wwwboard/boardList.blp" id="pageFrm" name="pageFrm">
+	<form method="POST" action="/www/board/boardList.blp" id="pageFrm" name="pageFrm">
 		<input type="hidden" name="nowPage" value="${NOWPAGE}">
 <%-- 		<input type="hidden" name="nowPage" value="${param.nowPage}"> --%>
 	</form>
