@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Jennie Project Main</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/www/img/favicon/favicon-32x32.png">
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/base.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
@@ -38,7 +39,7 @@
 </script>
 </head>
 <body>
-	<form method="POST" action="#" id="frm" name="frm">
+	<form method="POST" action="" id="frm" name="frm">
 		<input type="hidden" id="id" name="id" value="${SID}">
 	</form>
 	
@@ -60,7 +61,7 @@
 </c:if>
 <c:if test="${not empty SID and SCOUNT ne 0}">
 				<div class="w3-col">
-					<p class="w3-right-align"><small>* 현재 진행중인 설문중 참여하지 않은 설문이 [ <span class="w3-text-blue">${SCOUNT}</span> ]개 있습니다.<small></small></p>
+					<p class="w3-right-align"><small>* 현재 진행중인 설문중 참여하지 않은 설문이 [ <span class="w3-text-blue">${SCOUNT}</span> ]개 있습니다.</small></p>
 				</div>
 </c:if>
 
