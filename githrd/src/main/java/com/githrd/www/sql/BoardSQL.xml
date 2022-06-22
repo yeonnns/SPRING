@@ -47,7 +47,7 @@
 		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>
 	
-		<!-- 글번호로 게시글 내용 조회 질의명령 -->
+	<!-- 글번호로 게시글 내용 조회 질의명령 -->
 	<select id="boardDetail" resultType="bVO" parameterType="int">
 		SELECT
 		    bno, id, title, body, wdate
@@ -87,7 +87,7 @@
 		)
 	</insert>
 	
-	<insert id="inserFile" parameterType="fVO">
+	<insert id="insertFile" parameterType="fVO">
 		<selectKey keyProperty="fno" resultType="int" order="BEFORE">
 			SELECT 
 				NVL(MAX(fno) + 1, 10000001) 
