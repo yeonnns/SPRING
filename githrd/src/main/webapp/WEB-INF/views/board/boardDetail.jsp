@@ -58,7 +58,7 @@
 		<c:forEach var="data" items="${LIST}">
 			<c:if test="${not empty data.savename}">
 					<div class="inblock picbox">
-						<img class="pic" src="/www${data.dir}/${data.savename}"> 
+						<img class="pic" src="${data.dir}${data.savename}"> 
 					</div>
 			</c:if>
 		</c:forEach>
