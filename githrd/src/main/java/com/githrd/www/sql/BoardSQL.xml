@@ -32,7 +32,7 @@
 		                            board, fileInfo
 		                        WHERE
 		                            bno = fbno(+)
-		                            AND fileinfo.isshow = 'Y'
+		                            AND fileinfo.isshow(+) = 'Y'
 		                        GROUP BY
 		                            bno
 		                    )
@@ -63,12 +63,22 @@
 	<!-- 글번호로 첨부파일 리스트 조회 질의명령 -->
 	<select id="fileList" resultType="fVO" parameterType="int">
 		SELECT
-		   fno, savename, dir
+		    fno, savename, dir
 		FROM
 		    fileinfo
 		WHERE
 		    isshow = 'Y'
 		    AND fbno = #{bno}
+	</select>
+	
+	<!-- 회원아이디로 회원번호 조회 질의명령 -->
+	<select id="selMno" resultType="int" parameterType="string">
+		SELECT 
+			mno 
+		FROM 
+			member 
+		WHERE 
+			id = #{id}
 	</select>
 	
 	<insert id="insertBoard" parameterType="bVO">
@@ -82,8 +92,8 @@
 		INSERT INTO
 		    board(bno, bmno, title, body)
 		VALUES(
-		    #{bno},
-		    (SELECT mno FROM member WHERE id = #{id}),
+		    #{bno}, #{mno},
+<!-- 		    (SELECT mno FROM member WHERE id = #{id}), -->
 		    #{title}, #{body}
 		)
 	</insert>
@@ -124,12 +134,12 @@
 			<if test="body neq null">
 				body = #{body},
 			</if>
-		</set>	
+		</set>
 		WHERE
 			bno = #{bno}
 	</update>
 	
-	<!-- 게시글 삭제 질의명령  -->
+	<!-- 게시글 삭제 질의명령 -->
 	<update id="delBoard" parameterType="int">
 		UPDATE
 			board
@@ -139,4 +149,3 @@
 			bno = #{bno}
 	</update>
 </mapper>
-

@@ -33,6 +33,11 @@ public class BoardDao {
 		return sqlSession.selectOne("bSQL.boardDetail", bno);
 	}
 	
+	// 회원번호조회 전담 처리함수
+	public int getMno(String id) {
+		return sqlSession.selectOne("bSQL.selMno", id);
+	}
+	
 	// 게시글 입력 전담 처리함수
 	public int addBoard(BoardVO bVO) {
 		return sqlSession.insert("bSQL.insertBoard", bVO);
@@ -43,17 +48,17 @@ public class BoardDao {
 		return sqlSession.insert("bSQL.insertFile", fVO);
 	}
 	
-	// 첨부파일 삭제 전담 처리 함수
+	// 첨부파일 삭제 전담 처리함수
 	public int delFile(int fno) {
 		return sqlSession.update("bSQL.delFile", fno);
 	}
 	
-	// 게시글 수정 전담 처리 함수
+	// 게시글 수정 전담 처리함수
 	public int editBoard(BoardVO bVO) {
 		return sqlSession.update("bSQL.editBoard", bVO);
 	}
 	
-	// 게시글 삭제 전담 처리 함수
+	// 게시글 삭제 전담 처리함수
 	public int delBoard(int bno) {
 		return sqlSession.update("bSQL.delBoard", bno);
 	}
