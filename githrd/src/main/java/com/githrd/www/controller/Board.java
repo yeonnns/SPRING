@@ -74,7 +74,6 @@ public class Board {
 		// 뷰 정하고
 		mv.setViewName("board/boardDetail");
 		return mv;
-		
 	}
 	
 	// 게시판 글쓰기 폼보기요청 처리함수
@@ -88,14 +87,17 @@ public class Board {
 	@RequestMapping("/boardWriteProc.blp")
 	public ModelAndView boardWriteProc(ModelAndView mv, BoardVO bVO, String nowPage) {
 		String view = "/www/board/boardList.blp";
-		System.out.println("************ " + bVO);
+//		System.out.println("************ " + bVO.getMno());
 		try {
 			bSrvc.addBoardData(bVO);
+			// 정상적으로 등록작업에 성공한 경우
+			bVO.setResult("OK");
 			nowPage = "1";
 		} catch(Exception e) {
 			// 게시글 등록에 실패한 경우
 			// 결과적으로 롤백된 경우....
 //			view = "/www/board/boardWrite.blp?nowPage=" + nowPage;
+			bVO.setResult("NO");
 			view = "/www/board/boardWrite.blp";
 			e.printStackTrace();
 		}
@@ -107,9 +109,9 @@ public class Board {
 		return mv;
 	}
 	
-	// 수정폼 보기 요청 처리 함수
-	@RequestMapping(path="/boardEdit.blp", method=RequestMethod.POST, params={"nowPage", "bno"})
-	public ModelAndView boardWriteProc(ModelAndView mv, BoardVO bVO) {
+	// 게시글 수정폼 보기 요청 처리함수
+	@RequestMapping(path="/boardEdit.blp", method=RequestMethod.POST, params= {"nowPage", "bno"})
+	public ModelAndView boardEdit(ModelAndView mv, BoardVO bVO) {
 		// 첨부파일 리스트 조회
 		List<FileVO> list = bDao.getFileList(bVO.getBno());
 		// 게시글 상세 정보 조회
@@ -123,7 +125,7 @@ public class Board {
 		return mv;
 	}
 	
-	// 첨부파일 삭제 요청 처리 함수
+	// 첨부파일 삭제 요청 처리함수
 	@RequestMapping(path="/fileDel.blp", method=RequestMethod.POST, params="fno")
 	@ResponseBody
 	public HashMap<String, String> fileDel(FileVO fVO){
@@ -132,21 +134,23 @@ public class Board {
 		
 		int cnt = bDao.delFile(fVO.getFno());
 		if(cnt != 1) {
-			result = "NO";			
+			result = "NO";
 		}
+		
 		map.put("result", result);
+		
 		return map;
 	}
 	
-	// 게시글 수정 요청 처리 함수
+	// 게시글 수정 요청 처리함수
 	@RequestMapping("/boardEditProc.blp")
 	public ModelAndView boardEditProc(ModelAndView mv, BoardVO bVO, String nowPage) {
 		String view = "/www/board/boardDetail.blp";
 		try {
 			bSrvc.editBoard(bVO);
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
-			view = "/www/board/boardDetail.blp";
+			view = "/www/board/boardEdit.blp";
 		}
 		
 		mv.addObject("VIEW", view);
@@ -156,7 +160,7 @@ public class Board {
 		return mv;
 	}
 	
-	// 게시글 삭제 요청 처리 함수
+	// 게시글 삭제 요청 처리함수
 	@RequestMapping("/boardDel.blp")
 	public ModelAndView delBoard(ModelAndView mv, BoardVO bVO, String nowPage) {
 		int cnt = bDao.delBoard(bVO.getBno());
@@ -164,11 +168,11 @@ public class Board {
 		if(cnt != 1) {
 			view = "/www/board/boardDetail.blp";
 		}
+		
 		mv.addObject("VIEW", view);
 		mv.addObject("NOWPAGE", nowPage);
 		
-		
-		// 뷰정하고 
+		// 뷰 정하고
 		mv.setViewName("board/redirect");
 		return mv;
 	}

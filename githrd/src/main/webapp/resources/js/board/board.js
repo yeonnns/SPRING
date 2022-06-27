@@ -1,13 +1,14 @@
 $(document).ready(function(){
+	
 	$('#hbtn').click(function(){
 		$(location).attr('href', '/www/main.blp');
 	});
 	
 	$('#obtn').click(function(){
 //		$(location).attr('href', '/www/member/logout.blp');
-	$('#vw').val("/www/board/boardList.blp");
-	$('#frm').attr('action', '/www/member/logout.blp');
-	$('#frm').submit();
+		$('#vw').val("/www/board/boardList.blp");
+		$('#frm').attr('action', '/www/member/logout.blp');
+		$('#frm').submit();
 	});
 	
 	$('#lbtn').click(function(){
@@ -44,7 +45,6 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
-	
 	// 리셋 버튼 클릭이벤트
 	$('#rbtn').click(function(){
 		document.frm.reset();
@@ -55,22 +55,6 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
-	$('#filebox').on('change', '.upfile', function(evt){
-		var str = $(this).val();
-		if(!str){
-			$(this).remove();
-			return;
-		}
-		
-		var path = URL.createObjectURL(evt.target.files[0]);
-		$('#filebox').append('<input type="file" name="file" class="w3-input w3-border w3-margin-bottom upfile">');
-		$('#preview').append('<div class="inblock pdAll10 picbox w3-card"><div class="w3-col w3-border" style="width: 100%; height: 100%; overflow: hidden;">' +
-						'<img src="' + path + '" class="infoAvtBox">' + 
-					'</div></div>');
-		$('#previewbox').css('display', 'block');
-	});
-	
-	/*
 	$('#filebox').on('change', '.upfile', function(evt){
 		var str = $(this).val();
 		var index = $(this).index();
@@ -95,7 +79,6 @@ $(document).ready(function(){
 		}
 		$('#previewbox').css('display', 'block');
 	});
-	*/
 	
 	$('#wpbtn').click(function(){
 		// 비어있는 input 태그 비활성 시켜놓고
@@ -120,30 +103,29 @@ $(document).ready(function(){
 	$('#edit').click(function(){
 		$('#frm').attr('action', '/www/board/boardEdit.blp');
 		$('#frm').submit();
-	
 	});
 	
 	$('.evtPic').click(function(){
+		// 파일번호 꺼내오고
 		var sno = $(this).attr('id');
-		var el = $(this); 
+		var el = $(this);
+		
 		if(confirm("삭제하시겠습니까?")){
-			alert(sno + ' 파일 삭제 예정 !!');
-			
 			$.ajax({
 				url: '/www/board/fileDel.blp',
-				type : 'post',
+				type: 'post',
 				dataType: 'json',
 				data: {
-					fno: sno		
+					fno: sno
 				},
 				success: function(data){
 					if(data.result == 'OK'){
 						$(el).remove();
-						}
-					},
-					error: function(){
-						alert('### 통신 에러 ###');
 					}
+				},
+				error: function(){
+					alert('### 통신에러 ###');
+				}
 			});
 		}
 	});
@@ -172,7 +154,7 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
-	// 글 삭제 버튼 이벤트
+	// 글삭제 버튼 이벤트 처리
 	$('#dbtn').click(function(){
 		$('#frm').attr('action', '/www/board/boardDel.blp');
 		$('#frm').submit();
