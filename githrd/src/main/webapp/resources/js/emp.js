@@ -29,7 +29,7 @@ $(document).ready(function(){
 				$('#selList').css('display', 'block');
 			},
 			error: function(){
-				alert('### 준영씨에게 문의하세요! ###');
+				alert('### 통신오류 ###');
 			}
 		});
 	});
