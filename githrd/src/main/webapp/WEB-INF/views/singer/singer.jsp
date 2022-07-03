@@ -6,7 +6,6 @@
 <title>Singer Information</title>
 <link rel="stylesheet" type="text/css" href="/www/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/www/css/user.css">
-<link rel="stylesheet" type="text/css" href="/www/css/font-awesome-4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="/www/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/www/js/singer/singer.js"></script>
 </head>
