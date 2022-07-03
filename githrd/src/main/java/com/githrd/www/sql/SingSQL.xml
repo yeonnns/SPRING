@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="siSQL">
+	<select id="singList" resultType="siVO" parameterType="siVO">
+		SELECT
+		    name, num
+		FROM
+		    singer , singertype
+		WHERE
+		    gno is null
+		    AND no = s_type
+		    AND scode = #{stype}
+		    AND a_time = #{gn}
+		    AND s_gen = #{gen}
+	</select>
+	<select id="singMemb" resultType="siVO" parameterType="siVO">
+		SELECT
+		    name, num
+		FROM
+		    singer
+		WHERE
+			<if test="scode eq 'G'">
+				gno
+			</if>
+			<if test="scode eq 'S'">
+				num 
+			</if> 
+			= #{num}
+	</select>
+
+</mapper>
