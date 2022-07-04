@@ -19,4 +19,8 @@ public class SingDao {
 	public List<SingVO> singMemb(SingVO siVO){
 		return sqlSession.selectList("siSQL.singMemb", siVO);	
 	}
+	// 사진 조회 전담 처리 함수
+	public SingVO singImg(SingVO siVO){
+		return sqlSession.selectOne("siSQL.singImg", siVO);	
+	}
 }

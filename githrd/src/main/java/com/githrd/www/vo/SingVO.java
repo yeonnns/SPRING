@@ -1,7 +1,7 @@
 package com.githrd.www.vo;
 
 public class SingVO {
-	private String gn, gen, name, stype;
+	private String gn, gen, name, stype, sname;
 	private char scode;
 	private int no, num, s_type, gno;
 	
@@ -22,6 +22,13 @@ public class SingVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 	public int getNo() {
 		return no;
@@ -62,9 +69,10 @@ public class SingVO {
 	}
 	@Override
 	public String toString() {
-		return "SingVO [gn=" + gn + ", gen=" + gen + ", name=" + name + ", stype=" + stype + ", no=" + no + ", num="
-				+ num + ", s_type=" + s_type + ", gno=" + gno + ", scode=" + scode + "]";
+		return "SingVO [gn=" + gn + ", gen=" + gen + ", name=" + name + ", stype=" + stype + ", sname=" + sname
+				+ ", scode=" + scode + ", no=" + no + ", num=" + num + ", s_type=" + s_type + ", gno=" + gno + "]";
 	}
+
 	
 	
 	

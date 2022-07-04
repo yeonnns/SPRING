@@ -35,4 +35,11 @@ public class Singer {
 		List<SingVO> list = siDao.singMemb(siVO);
 		return list;
 	}
+	// 사진 조회
+	@RequestMapping("/singImg.blp")
+	@ResponseBody
+	public SingVO singImg(SingVO siVO) {
+		siVO = siDao.singImg(siVO);
+		return siVO;
+	}
 }

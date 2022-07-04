@@ -1,10 +1,12 @@
 $(document).ready(function(){
-	//$('#gselect, #mselect').css('display', 'none');
+	$('#gselect, #mselect, #photobox').css('display', 'none');
 	
-	$('#gn, #gen, #stype').change(function(){
+	$('#stype').change(function(){
 		var sgn = $('#gn').val();
 		var sgen = $('#gen').val();
 		var sstype = $('#stype').val();
+		
+		
 	
 	$.ajax({
 			url: '/www/singer/singList.blp',
@@ -12,31 +14,77 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: {
 				gn : sgn,
-				sgen : sgen,
+				gen : sgen,
 				stype: sstype
 			},	
 			success: function(arr){
-			$('#gselect, #mselect').css('display', 'none').html('<option disabled selected>::: 타입 선택 :::</option>');
-				if(txt == 'dept'){
-					for(var i = 0 ; i < arr.length ; i++ ){
-						var str = '<option class="w3-center" value=' + arr[i].dno + '>' + arr[i].dname + '</option>';
-						$('#selList').append(str);
-					}
-				} else {
-					for(var i = 0 ; i < arr.length ; i++ ){
-						var str = '<option class="w3-center" value=' + arr[i].job + '>' + arr[i].job + '</option>';
-						$('#selList').append(str);
-					}
-				}
+				$('#gselect').css('display', 'none').html('<option disabled selected>::: 타입 선택 :::</option>');
+						for(var i = 0 ; i < arr.length ; i++ ){
+							var str = '<option class="w3-center" value=' + arr[i].num + '>' + arr[i].name + '</option>';
+							$('#gselect').append(str);
+						}
+				// gselect 태그 노출
+				$('#gselect').css('display', 'block');
+					
 				
-				// selList 태그 보이게...
-				$('#selList').css('display', 'block');
 			},
 			error: function(){
-				alert('### 준영씨에게 문의하세요! ###');
+				alert('### 통신오류 ###');
 			}
 		});
-	
 	});
+	
+	$('#gselect').change(function(){
+		var txt = $(this).val();
+		var prevSel = $('#stype').val();
+	
+		$.ajax({
+			url: '/www/singer/singMemb.blp',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				num  : txt,
+				scode: prevSel
+			},
+			success: function(arr){
+				$('#mselect').css('display', 'none').html('<option disabled selected>::: 타입 선택 :::</option>');
+						for(var i = 0 ; i < arr.length ; i++ ){
+							var str = '<option class="w3-center" value=' + arr[i].num + '>' + arr[i].name + '</option>';
+							$('#mselect').append(str);
+						}
+				// mselect 태그 노출
+				$('#mselect').css('display', 'block');
+				
+			},
+			error: function(){
+			alert('### 통신오류 ###');
+			
+			}
+		});	
+	});
+	
+	
+	$('#mselect').change(function(){
+		var txt = $(this).val();
+		
+		$.ajax({
+			url: '/www/singer/singImg.blp',
+			type: 'post',
+			dataType: 'json',
+			data: {
+			num: txt
+			},
+			success: function(data){
+				$('.infoAvtBox').attr('src', '/www/img/photo/'+ data.sname)
+				$('#photobox').css('display', 'block');
+				
+			},
+				error: function(){
+				alert('### 통신오류 ###');
+				
+				}
+		
+		});
+	});	
 });
 	

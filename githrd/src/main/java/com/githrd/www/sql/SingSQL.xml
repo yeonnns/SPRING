@@ -29,5 +29,13 @@
 			</if> 
 			= #{num}
 	</select>
-
+	<select id="singImg" resultType="siVO" parameterType="siVO">
+		SELECT
+		    sname
+		FROM
+		    photo
+		WHERE
+		    s_num = #{num}
+		    AND show ='C'
+	</select>
 </mapper>
