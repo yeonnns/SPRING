@@ -1,5 +1,6 @@
 package com.githrd.www.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
@@ -44,5 +45,43 @@ public class Arduino {
 		
 		mv.setViewName("arduino/topFive");
 		return mv;
+	}
+	
+	@RequestMapping("/addCount.blp")
+	@ResponseBody
+	public Map<String, String> addCount(){
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+//		String sdate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+//		int cnt = aDao.addCount(sdate);
+		
+		int cnt = aDao.addCount();
+		
+		String result = "OK";
+		
+		if(cnt != 1) {
+			result = "NO";
+		}
+		
+		map.put("result", result);
+		
+		return map;
+	}
+	
+	// 온습도 측정데이터 추가 요청 전담 처리함수
+	@RequestMapping("/addTemp.blp")
+	@ResponseBody
+	public Map<String, String> addDHT(ArduVO aVO){
+		Map<String, String> map = new HashMap<String, String>();
+		String result = "Success";
+		
+		int cnt = aDao.addDHT(aVO);
+		
+		if(cnt != 1) {
+			result = "Fail";
+		}
+		
+		map.put("result", result);
+		return map;
 	}
 }

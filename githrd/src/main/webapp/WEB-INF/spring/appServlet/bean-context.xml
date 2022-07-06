@@ -17,6 +17,7 @@
 	<bean id="rDao" class="com.githrd.www.dao.ReBoardDao" />
 	<bean id="sDao" class="com.githrd.www.dao.SurveyDao" />
 	<bean id="eDao" class="com.githrd.www.dao.EmpDao" />
+	<bean id="pDao" class="com.githrd.www.dao.ProductDao" />
 	<bean id="siDao" class="com.githrd.www.dao.SingDao" />
 	
 	<!-- 서비스 클래스 빈처리 -->

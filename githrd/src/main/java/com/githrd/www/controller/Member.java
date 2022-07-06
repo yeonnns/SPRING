@@ -44,7 +44,7 @@ public class Member {
 	}
 	*/
 	
-	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw"})
+//	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw"})
 	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv) {
 //		System.out.println("### 일반 사용자");
 //		System.out.println("************** id : " + id);
@@ -77,7 +77,7 @@ public class Member {
 	}
 	
 	// 댓글게시판에서 로그인 처리를 요청하는 처리함수
-	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw", "vw", "nowPage"})
+//	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw", "vw", "nowPage"})
 	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv, String vw, String nowPage) {
 		int cnt = mDao.getLogin(mVO);
 		if(cnt == 1) {
@@ -89,6 +89,32 @@ public class Member {
 			rv.setUrl(vw + "?nowPage=" + nowPage); // 리다이렉트
 		} else {
 			rv.setUrl("/www/member/login.blp?vw=" + vw + "&nowPage=" + nowPage);
+		}
+		mv.setView(rv);
+		
+		return mv;
+	}
+	// 댓글게시판에서 로그인 처리를 요청하는 처리함수
+	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw"})
+	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv, String vw, String nowPage, Map<String, String> map) {
+		map =  new HashMap<String, String>();
+		map.put("id", mVO.getId());
+		map.put("pw", mVO.getPw());
+		int cnt = mDao.getLogin(map);
+		if(cnt == 1) {
+			session.setAttribute("SID", mVO.getId()); // 로그인 처리
+			
+			session.setAttribute("MSG_CHECK", "OK");
+			int count = gDao.getMyCount(mVO.getId());
+			session.setAttribute("CNT", count);
+			
+			if(count == 0) {
+				rv.setUrl("/www/gBoard/gBoardList.blp");
+			} else {
+				rv.setUrl("/www/main.blp");
+			}
+		} else {
+			rv.setUrl("/www/member/login.blp");
 		}
 		mv.setView(rv);
 		

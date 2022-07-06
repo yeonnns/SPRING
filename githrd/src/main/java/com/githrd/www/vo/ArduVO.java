@@ -4,10 +4,22 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ArduVO {
-	private int ano, rno, cnt, nowPage, startCont, endCont;
-	private double ddata;
+	private int ano, rno, cnt, nowPage, startCont, endCont, hum;
+	private double ddata, tmp;
 	private String sdate;
 	private Date wdate;
+	public int getHum() {
+		return hum;
+	}
+	public void setHum(int hum) {
+		this.hum = hum;
+	}
+	public double getTmp() {
+		return tmp;
+	}
+	public void setTmp(double tmp) {
+		this.tmp = tmp;
+	}
 	public int getAno() {
 		return ano;
 	}
