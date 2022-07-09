@@ -18,4 +18,9 @@ public class ProductDao {
 	public List<ProductVO> getCateList(ProductVO pVO){
 		return sqlSession.selectList("pSQL.cateList", pVO);
 	}
+	
+	// 상품 리스트 조회 전담 처리함수
+	public List<ProductVO> getProductList(ProductVO pVO){
+		return sqlSession.selectList("pSQL.pList", pVO);
+	}
 }

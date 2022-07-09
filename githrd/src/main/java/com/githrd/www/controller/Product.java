@@ -31,7 +31,14 @@ public class Product {
 	@ResponseBody
 	public List<ProductVO> cateList(ProductVO pVO){
 		List<ProductVO> list = pDao.getCateList(pVO);
-		
 		return list;
+	}
+	
+	// 상품 리스트 요청 전담 처리함수
+	@RequestMapping("/productList.blp")
+	@ResponseBody
+	public List<ProductVO> productList(ProductVO pVO){
+//		List<ProductVO> list = pDao.getProductList(pVO);
+		return pDao.getProductList(pVO);
 	}
 }

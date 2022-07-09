@@ -1,6 +1,6 @@
 ### GITHRD Project 요청 설계 ###
 
- 
+
 # main 페이지 보기 요청
 요청내용	:	/www/ , /www/main.blp
 파라미터	:	무
@@ -218,9 +218,8 @@
 뷰			:	/WEB-INF/views/survey/surveyResult.jsp
 --------------------------------------------------------------------------------
 
-
 ================================================================================
-################ 게시판 요청 설계 #########################################
+################ 파일 게시판 요청 설계 #########################################
 ================================================================================
 # 게시판 리스트 폼 보기 요청
 요청내용	:	/www/board/boardList.blp
@@ -243,7 +242,7 @@
 처리함수	:	boardWrite()
 뷰			:	/WEB-INF/views/board/boardWrite.jsp
 --------------------------------------------------------------------------------
-# 게시판 글쓰기 처리 요청
+# 게시판 글등록 처리 요청
 요청내용	:	/www/board/boardWriteProc.blp
 파라미터	:	nowPage, id, title, body[, file]
 컨트롤러	:	com.githrd.www.controller.Board
@@ -264,14 +263,14 @@
 처리함수	:	fileDel()
 뷰			:	json
 --------------------------------------------------------------------------------
-# 게시판 글 등록 처리 요청
+# 게시판 글등록 처리 요청
 요청내용	:	/www/board/boardEditProc.blp
 파라미터	:	nowPage, bno, title, body[, file]
 컨트롤러	:	com.githrd.www.controller.Board
 처리함수	:	boardEditProc()
 뷰			:	redirect.jsp
-					성공: /www/board/boardDetail.blp
-					실패: /www/board/boardEdit.blp
+					성공 : /www/board/boardDetail.blp
+					실패 : /www/board/boardEdit.blp
 --------------------------------------------------------------------------------
 # 게시판 게시글 삭제 처리 요청
 요청내용	:	/www/board/boardDel.blp
@@ -279,8 +278,8 @@
 컨트롤러	:	com.githrd.www.controller.Board
 처리함수	:	boardDel()
 뷰			:	redirect.jsp
-					성공: /www/board/boardDetail.blp
-					실패: /www/board/boardEdit.blp
+					성공 : /www/board/boardDetail.blp
+					실패 : /www/board/boardEdit.blp
 --------------------------------------------------------------------------------
 
 
@@ -336,26 +335,25 @@
 --------------------------------------------------------------------------------
 # 가수 리스트 요청
 요청내용	:	/www/singer/singerList.blp
-파라미터	:	stype, gn, gen
+파라미터	:	s_time, s_gen, scode
 컨트롤러	:	com.githrd.www.controller.Singer
-처리함수	:	singList()
-뷰			:	json : [{name, num}, {name, num}, ...]
+처리함수	:	singerList()
+뷰			:	json : [{name, num, scode}, {name, num, scode}, ...]
 --------------------------------------------------------------------------------
 # 그룹 멤버 리스트 요청
-요청내용	:	/www/singer/singMemb.blp
-파라미터	:	num, scode
-컨트롤러	:	com.githrd.www.controller.Singer
-처리함수	:	singMemb()
-뷰			:	json : [{name, num}, {name, num}, ...]
---------------------------------------------------------------------------------
-# 가수 포토 저장이름 요청
-요청내용	:	/www/singer/singImg.blp
+요청내용	:	/www/singer/memberList.blp
 파라미터	:	num
 컨트롤러	:	com.githrd.www.controller.Singer
-처리함수	:	singImg()
+처리함수	:	memberList()
+뷰			:	json : [{name, num, scode}, {name, num, scode}, ...]
+--------------------------------------------------------------------------------
+# 가수 포토 저장이름 요청
+요청내용	:	/www/singer/getPhoto.blp
+파라미터	:	num
+컨트롤러	:	com.githrd.www.controller.Singer
+처리함수	:	getPhoto()
 뷰			:	json : {"sname": "??????"}
 --------------------------------------------------------------------------------
-
 
 
 ================================================================================
@@ -370,9 +368,22 @@
 --------------------------------------------------------------------------------
 # 카테고리 리스트 조회 요청
 요청내용	:	/www/cate/cateList.blp
-파라미터	:	무
+파라미터	:	upno
 컨트롤러	:	com.githrd.www.controller.Product
 처리함수	:	cateList()
-뷰			:	json [{"cno": ????, "cname": ????},  ,{"cno": ????, "cname": ????}, ....]
+뷰			:	json [{"cno": ????, "cname": ????}, {"cno": ????, "cname": ????},{"cno": ????, "cname": ????}, ....]
 --------------------------------------------------------------------------------
-
+# 상품 리스트 조회 요청
+요청내용	:	/www/cate/productList.blp
+파라미터	:	cno
+컨트롤러	:	com.githrd.www.controller.Product
+처리함수	:	productList()
+뷰			:	json 
+--------------------------------------------------------------------------------
+# 상품 상세보기 페이지 요청
+요청내용	:	/www/cate/productDetail.blp
+파라미터	:	pno
+컨트롤러	:	com.githrd.www.controller.Product
+처리함수	:	productDetail()
+뷰			:	/WEB-INF/views/cate/productDetail.jsp
+--------------------------------------------------------------------------------

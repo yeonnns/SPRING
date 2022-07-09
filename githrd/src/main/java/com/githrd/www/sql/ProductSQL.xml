@@ -27,4 +27,16 @@
 		    upno  = #{cno}
 		</if>
 	</select>
+	
+	<!-- 제품 리스트 조회 질의명령 -->
+	<select id="pList" resultType="pVO" parameterType="pVO">
+		SELECT
+		    pno, pname, savename sname, dir, price, manuf_co
+		FROM
+		    product, fileInfo
+		WHERE
+		    pno = fbno
+		    AND dir = '/www/img/product/'
+		    AND cno = #{cno}
+	</select>
 </mapper>
