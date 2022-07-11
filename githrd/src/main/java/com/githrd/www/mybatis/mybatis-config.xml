@@ -30,6 +30,7 @@
 		<mapper resource="com/githrd/www/sql/BoardSQL.xml" />
 		<mapper resource="com/githrd/www/sql/EmpSQL.xml" />
 		<mapper resource="com/githrd/www/sql/SingSQL.xml" />
+		<mapper resource="com/githrd/www/sql/DelSQL.xml" />
 		<mapper resource="com/githrd/www/sql/ProductSQL.xml" />
 	</mappers>
 </configuration>

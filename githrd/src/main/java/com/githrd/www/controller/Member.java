@@ -1,18 +1,25 @@
 package com.githrd.www.controller;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpSession;
 
-import org.slf4j.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
-import org.springframework.web.servlet.view.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
-import com.githrd.www.dao.*;
-import com.githrd.www.vo.*;
+import com.githrd.www.dao.GBoardDao;
+import com.githrd.www.dao.MemberDao;
+import com.githrd.www.service.DeleteMember;
+import com.githrd.www.vo.MemberVO;
 
 @Controller
 @RequestMapping("/member")
@@ -25,6 +32,7 @@ public class Member {
 	MemberDao mDao;
 	@Autowired
 	GBoardDao gDao;
+
 	
 	@RequestMapping("/login.blp")
 	public ModelAndView loginForm(ModelAndView mv, HttpSession session) {
@@ -143,12 +151,12 @@ public class Member {
 	
 	@RequestMapping(path="/loginProc.blp", params="id=admin")
 	public ModelAndView adminLogin(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv) {
-//		System.out.println("### 관리자");
+		System.out.println("### 관리자");
 		
 		int cnt = mDao.getLogin(mVO);
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
-			rv.setUrl("/www/main.blp");
+			rv.setUrl("/www/admin/adminPage.blp");
 		} else {
 			rv.setUrl("/www/member/login.blp");
 		}

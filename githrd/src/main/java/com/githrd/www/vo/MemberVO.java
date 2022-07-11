@@ -62,7 +62,7 @@ public class MemberVO {
 		this.sdate = sdate;
 	}
 	public void setSdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
+		SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		sdate = form.format(jdate);
 	}
 	public String getGen() {
@@ -71,18 +71,17 @@ public class MemberVO {
 	public void setGen(String gen) {
 		this.gen = gen;
 	}
-	
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
-	}
 	public String getSavename() {
 		return savename;
 	}
 	public void setSavename(String savename) {
 		this.savename = savename;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 	public Date getJdate() {
 		return jdate;
